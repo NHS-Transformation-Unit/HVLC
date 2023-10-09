@@ -1,0 +1,44 @@
+---
+title: "HVLC GIRFT Code Examples"
+author: "NHS Transformation Unit"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+ html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    toc_collapsed: true
+    css: ../../config/nhs_tu_theme.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+source("../../requirements/packages.R")
+source("load.R")
+
+```
+
+```{r logo, echo = FALSE}
+
+htmltools::img(src = knitr::image_uri(paste0(here(), "/images/TU_logo_large.png")), 
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:5%; padding:10px;',
+               width = "180px",
+               heigth = "180px")
+
+```
+
+# Introduction
+This document has been created to demonstrate how to extract and identify *HVLC* activity based on the criteria supplied by the Getting it Right First Time (*GIRFT*) Programme.
+
+# Example Extract
+For these examples the script in `src/data/sql_scripts/extract.sql` will need to be run within the NCDR environment and the outputs saved as `extract.xlsx` within `src/data`. The sql script used to extract the data is provided below:
+
+```{r sql_extract, include_sql = FALSE, eval = TRUE}
+
+sql_script <- readLines("../sql_scripts/extract.sql")
+cat(sql_script, sep = "\n")
+
+```
+
