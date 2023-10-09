@@ -194,7 +194,7 @@ hvlc_ent_septorhino_filter <- function(input_df){
 hvlc_ent_septorhino_flag <- function(input_df){
   
   input_df %>%
-    mutate("Septohino_Flag" = case_when(
+    mutate("Septorhino_Flag" = case_when(
       Age >= 17 &
         (Main_Specialty_Code == 120 | Treatment_Function_Code %in% c(120, 215)) &
         (Admission_Method %in% c(11, 12, 13) | Patient_Classification == 2) &
@@ -204,6 +204,6 @@ hvlc_ent_septorhino_flag <- function(input_df){
         !grepl("C0|C10|C11|C12|C13|C14|C30|C31|C32", Der_Diagnosis_All) ~ 1,
       TRUE ~ 0)
     ) %>%
-    arrange(desc(Septohino_Flag))
+    arrange(desc(Septorhino_Flag))
   
 }
