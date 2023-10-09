@@ -1,0 +1,226 @@
+---
+title: "HVLC GIRFT Code Examples"
+author: "NHS Transformation Unit"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+ html_document:
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    toc_collapsed: true
+    css: ../../config/nhs_tu_theme.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+
+source("../../requirements/packages.R")
+source("load.R")
+source("ENT.R")
+
+```
+
+```{r logo, echo = FALSE}
+
+htmltools::img(src = knitr::image_uri(paste0(here(), "/images/TU_logo_large.png")), 
+               alt = 'logo', 
+               style = 'position:absolute; top:0; right:5%; padding:10px;',
+               width = "180px",
+               heigth = "180px")
+
+```
+
+# Introduction
+***
+
+This document has been created to demonstrate how to extract and identify *HVLC* activity based on the criteria supplied by the Getting it Right First Time (*GIRFT*) Programme.
+
+# Example Extract
+***
+
+For these examples the script in `src/data/sql_scripts/extract.sql` will need to be run within the NCDR environment and the outputs saved as `extract.xlsx` within `src/data`. The sql script used to extract the data is provided below:
+
+```{sql, file='../sql_scripts/extract.sql', echo = TRUE, eval = FALSE}
+```
+
+<br/>
+
+# Specialty HVLC
+***
+
+## ENT {.tabset .tabset-fade}
+For ENT there are five different HVLC groups that are currently defined by GIRFT. Examples of how to use the functions that have been created in this repository within the `src/data/r_scripts/ENT.R` script are given below. The final tab shows the code that has been written to create the functions to either filter or flag epiosdes of interest.
+
+### Endo Sinus Surgery
+The code below will filter the extracted APCE data to keep only the Endo Sinus Surgery activity.
+
+```{r ENT Endo Sinus Filter}
+
+ent_ess_filter <- hvlc_ent_endo_sinus_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+ent_ess_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r ENT Endo Sinus Flag}
+
+ent_ess_flag <- hvlc_ent_endo_sinus_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Endo_sinus_Flag")) %>%
+  head(n = 15)
+
+ent_ess_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Tonsillectomy
+The code below will filter the extracted APCE data to keep only the Tonsillectomy activity.
+
+```{r ENT Tonsillectomy Filter}
+
+ent_ton_filter <- hvlc_ent_tonsillectomy_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+ent_ton_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r ENT Tonsillectomy Flag}
+
+ent_ton_flag <- hvlc_ent_tonsillectomy_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Tonsillectomy_Flag")) %>%
+  head(n = 15)
+
+ent_ton_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Myringoplasty
+The code below will filter the extracted APCE data to keep only the Myringoplasty activity.
+
+```{r ENT Myringoplasty Filter}
+
+ent_myr_filter <- hvlc_ent_myringoplasty_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+ent_myr_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r ENT Myringoplasty Flag}
+
+ent_myr_flag <- hvlc_ent_myringoplasty_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "myringoplasty_Flag")) %>%
+  head(n = 15)
+
+ent_myr_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Septoplasty and Turbinate
+The code below will filter the extracted APCE data to keep only the Septoplasty & Turbinate activity.
+
+```{r ENT Septo Turb Filter}
+
+ent_st_filter <- hvlc_ent_septo_turb_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+ent_st_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r ENT Septo Turb Flag}
+
+ent_st_flag <- hvlc_ent_septo_turb_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Septo_Turb_Flag")) %>%
+  head(n = 15)
+
+ent_st_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Septorhinoplasty
+The code below will filter the extracted APCE data to keep only the Septorhinoplasty activity.
+
+```{r ENT Septorhinoplasty Filter}
+
+ent_sh_filter <- hvlc_ent_septorhino_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+ent_sh_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r ENT Septorhinoplasty Flag}
+
+ent_sh_flag <- hvlc_ent_septorhino_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Septorhino_Flag")) %>%
+  head(n = 15)
+
+ent_sh_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### R Functions
+The code below has been written to create the functions that will either filter or flag activity based on the ENT HVLC criteria:
+```{r, file='ENT.R', echo = TRUE, eval = FALSE}
+```
+
+<br/>
+
+
