@@ -18,10 +18,11 @@ At present the structure of the repository is:
 
 ``` plaintext
 
+├───data
 ├───images
 └───src
     ├───config
-    ├───data
+    ├───processing
       ├───r_scripts
       └───sql_scripts
     └───requirements
@@ -29,6 +30,9 @@ At present the structure of the repository is:
 ```
 
 <br/>
+
+### `data`
+Where the extract of APCE data will be saved for loading and processing.
 
 ### `images`
 
@@ -39,7 +43,7 @@ Images such as TU logos and branding to add to outputs.
 All code is stored in src. This is subdivided into three modules:
 
 1. `config`: Files for configuring the output such as the `theme.css` for the html output.
-2. `data`: Files for extracting data from NCDR and creating the functions to filter or flag HVLC activity.
+2. `processing`: Files for extracting data from NCDR and creating the functions to filter or flag HVLC activity.
 3. `requirements`: Requirements file for building the output html such as the `packages.R` script.
 
 ## Contributors
