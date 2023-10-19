@@ -17,6 +17,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 source("../../requirements/packages.R")
 source("load.R")
 source("ENT.R")
+source("General_Surgery.R")
 
 ```
 
@@ -49,7 +50,7 @@ For these examples the script in `src/data/sql_scripts/extract.sql` will need to
 ***
 
 ## ENT {.tabset .tabset-fade}
-For ENT there are five different HVLC groups that are currently defined by GIRFT. Examples of how to use the functions that have been created in this repository within the `src/data/r_scripts/ENT.R` script are given below. The final tab shows the code that has been written to create the functions to either filter or flag epiosdes of interest.
+For ENT there are five different HVLC groups that are currently defined by GIRFT. Examples of how to use the functions that have been created in this repository within the `src/data/r_scripts/ENT.R` script are given below. The final tab shows the code that has been written to create the functions to either filter or flag episodes of interest.
 
 ### Endo Sinus Surgery
 The code below will filter the extracted APCE data to keep only the Endo Sinus Surgery activity.
@@ -223,4 +224,111 @@ The code below has been written to create the functions that will either filter 
 
 <br/>
 
+## General Surgery {.tabset .tabset-fade}
+For General Surgery there are three different HVLC groups that are currently defined by GIRFT. Examples of how to use the functions that have been created in this repository within the `src/data/r_scripts/General_Surgery.R` script are given below. The final tab shows the code that has been written to create the functions to either filter or flag episodes of interest.
 
+### Laparoscopic cholecystectomy
+The code below will filter the extracted APCE data to keep only the Laparoscopic cholecystectomy Surgery activity.
+
+```{r Gen Surg Laparoscopic cholecystectomy Filter}
+
+gs_lc_filter <- hvlc_gs_lc_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+gs_lc_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Gen Surg Laparoscopic cholecystectomy Flag}
+
+gs_lc_flag <- hvlc_gs_lc_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Laparoscopic_cholecystectomy_flag")) %>%
+  head(n = 15)
+
+gs_lc_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Primary inguinal hernia repair
+The code below will filter the extracted APCE data to keep only the Primary inguinal hernia repair Surgery activity.
+
+```{r Gen Surg Primary inguinal hernia repair Filter}
+
+gs_pihr_filter <- hvlc_gs_pihr_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+gs_pihr_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Gen Surg Primary inguinal hernia repair Flag}
+
+gs_pihr_flag <- hvlc_gs_pihr_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Primary_inguinal_hernia_repair_flag")) %>%
+  head(n = 15)
+
+gs_pihr_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Para-umbilical hernia
+The code below will filter the extracted APCE data to keep only the Para-umbilical hernia Surgery activity.
+
+```{r Gen Surg Para-umbilical hernia Filter}
+
+gs_puh_filter <- hvlc_gs_puh_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+gs_pihr_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Gen Surg Para-umbilical hernia Flag}
+
+gs_puh_flag <- hvlc_gs_puh_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Para_umbilical_hernia_flag")) %>%
+  head(n = 15)
+
+gs_puh_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### R Functions
+The code below has been written to create the functions that will either filter or flag activity based on the ENT HVLC criteria:
+```{r, file='General_Surgery.R', echo = TRUE, eval = FALSE}
+```
+
+<br/>
