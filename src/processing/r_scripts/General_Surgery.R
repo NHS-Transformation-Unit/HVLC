@@ -39,7 +39,7 @@ hvlc_gs_pihr_filter <- function(input_df){
   input_df %>%
     filter(Age >= 17,
            (Admission_Method %in% c(11, 12, 13) | Patient_Classification == 2),
-           grepl("T201|T202|T204|T208|T209", Der_Procedure_All),
+           grepl("T201|T202|T203|T204|T208|T209", Der_Procedure_All),
            !grepl("Y713|Y716|Y717", Der_Procedure_All),
            !grepl("C56|C570", Der_Diagnosis_All)
     )
