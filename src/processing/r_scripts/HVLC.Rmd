@@ -327,8 +327,51 @@ gs_puh_flag %>%
 <br/>
 
 ### R Functions
-The code below has been written to create the functions that will either filter or flag activity based on the ENT HVLC criteria:
+The code below has been written to create the functions that will either filter or flag activity based on the General Surgery HVLC criteria:
 ```{r, file='General_Surgery.R', echo = TRUE, eval = FALSE}
+```
+
+<br/>
+
+## Ophthalmology {.tabset .tabset-fade}
+For Ophthalmology there is one HVLC groups that are currently defined by GIRFT. Examples of how to use the functions that have been created in this repository within the `src/data/r_scripts/Ophthalmology.R` script are given below. The final tab shows the code that has been written to create the functions to either filter or flag episodes of interest.
+
+### Low complexity cataract surgery
+The code below will filter the extracted APCE data to keep only the Low Complexity Cataract Surgery activity.
+
+```{r Ophth Low Complexity Cataract Surgery Filter}
+
+ophth_lccs_filter <- hvlc_ophth_lccs_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+ophth_lccs_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Ophth Low Complexity Cataract Surgery Flag}
+
+ophth_lccs_flag <- hvlc_ophth_lccs_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Low_complexity_cataract_surgery_flag")) %>%
+  head(n = 15)
+
+ophth_lccs_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### R Functions
+The code below has been written to create the functions that will either filter or flag activity based on the Ophthalmology HVLC criteria:
+```{r, file='Ophthalmology.R', echo = TRUE, eval = FALSE}
 ```
 
 <br/>
