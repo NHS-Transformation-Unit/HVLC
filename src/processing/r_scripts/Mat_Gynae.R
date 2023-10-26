@@ -52,7 +52,6 @@ hvlc_gynae_op_flag <- function(input_df){
     )%>%
     arrange(desc(Operative_laparoscopy_flag))
   }
-      
 
 # Laparoscopic hysterectomy------------------------------------------------------           
 
@@ -85,7 +84,6 @@ hvlc_gynae_lh_flag <- function(input_df){
     arrange(desc(Laparoscopic_hysterectomy_flag))
   }
       
-
 # Endometrial ablation------------------------------------------------------           
 
 hvlc_gynae_eb_filter <- function(input_df){
@@ -113,7 +111,6 @@ hvlc_gynae_eb_flag <- function(input_df){
     )
     )%>%
     arrange(desc(Endometrial_ablation_flag))
-  
 }
     
 # Hysteroscopy------------------------------------------------------
@@ -193,10 +190,3 @@ hvlc_gynae_vag_hyst_flag <- function(input_df){
     )%>%
     arrange(desc(Vaginal_hysterectomy_and/or_vaginal_wall_repair_flag))
   }
-
-
-
-
-
-
-
