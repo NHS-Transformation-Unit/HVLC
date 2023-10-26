@@ -20,6 +20,7 @@ source("ENT.R")
 source("General_Surgery.R")
 source("Ophthalmology.R")
 source("Urology.R")
+source("Mat_Gynae.R")
 
 ```
 
@@ -551,6 +552,180 @@ urology_mpss_flag %>%
 ### R Functions
 The code below has been written to create the functions that will either filter or flag activity based on the Urology HVLC criteria:
 ```{r, file='Urology.R', echo = TRUE, eval = FALSE}
+```
+
+<br/>
+
+
+## Gynaecology {.tabset .tabset-fade}
+For Gynaecology there are five different HVLC groups that are currently defined by GIRFT. Examples of how to use the functions that have been created in this repository within the `src/data/r_scripts/Mat_Gynae.R` script are given below. The final tab shows the code that has been written to create the functions to either filter or flag episodes of interest.
+
+### Operative laparoscopy
+The code below will filter the extracted APCE data to keep only the Operative laparoscopy activity.
+
+```{r Gynaecology operative laparoscopy Filter}
+
+gynae_op_filter <- hvlc_gynae_op_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+gynae_op_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Gynaecology operative laparoscopy Flag}
+
+gynae_op_flag <- hvlc_gynae_op_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Operative_laparoscopy_flag")) %>%
+  head(n = 15)
+
+gynae_op_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+<br/>
+
+### Laparoscopic hysterectomy
+The code below will filter the extracted APCE data to keep only the Laparoscopic Hysterectomy activity.
+
+```{r Gynaecology Laparoscopic hysterectomy Filter}
+
+gynae_lh_filter <- hvlc_gynae_lh_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+gynae_lh_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Gynaecology Laparoscopic hysterectomy Flag}
+
+gynae_lh_flag <- hvlc_gynae_lh_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Laparoscopic_hysterectomy_flag")) %>%
+  head(n = 15)
+
+gynae_lh_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Endometrial ablation
+The code below will filter the extracted APCE data to keep only the Endometrial ablation activity.
+
+```{r Gynaecology Endometrial ablation Filter}
+
+gynae_eb_filter <- hvlc_gynae_eb_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+gynae_eb_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Gynaecology Endometrial ablation Flag}
+
+gynae_eb_flag <- hvlc_gynae_eb_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Endometrial_ablation_flag")) %>%
+  head(n = 15)
+
+gynae_eb_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Hysteroscopy
+The code below will filter the extracted APCE data to keep only the Hysteroscopy activity.
+
+```{r Gynaecology Hysteroscopy Filter}
+
+gynae_hyst_filter <- hvlc_gynae_hyst_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+gynae_hyst_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Gynaecology Hysteroscopy Flag}
+
+gynae_hyst_flag <- hvlc_gynae_hyst_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Hysteroscopy_flag")) %>%
+  head(n = 15)
+
+gynae_hyst_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Vaginal hysterectomy and/or vaginal wall repair
+The code below will filter the extracted APCE data to keep only the Vaginal hysterectomy and/or vaginal wall repair activity.
+
+```{r Gynaecology Vaginal hysterectomy and/or vaginal wall repair Filter}
+
+gynae_vag_hyst_filter <- hvlc_gynae_vag_hyst_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+gynae_vag_hyst_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Gynaecology Vaginal hysterectomy and/or vaginal wall repair Flag}
+
+gynae_vag_hyst_flag <- hvlc_gynae_vag_hyst_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Vaginal_hysterectomy_and_or_vaginal_wall_repair_flag")) %>%
+  head(n = 15)
+
+gynae_vag_hyst_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### R Functions
+The code below has been written to create the functions that will either filter or flag activity based on the Gynaecology HVLC criteria:
+```{r, file='Mat_Gynae.R', echo = TRUE, eval = FALSE}
 ```
 
 <br/>
