@@ -18,6 +18,8 @@ source("../../requirements/packages.R")
 source("load.R")
 source("ENT.R")
 source("General_Surgery.R")
+source("Ophthalmology.R")
+source("Urology.R")
 
 ```
 
@@ -36,8 +38,10 @@ htmltools::img(src = knitr::image_uri(paste0(here(), "/images/TU_logo_large.png"
 
 This document has been created to demonstrate how to extract and identify *HVLC* activity based on the criteria supplied by the Getting it Right First Time (*GIRFT*) Programme.
 
-# Example Extract
+# Example Extract {.tabset .tabset-fade}
 ***
+
+## Inpatient extract
 
 For these examples the script in `src/data/sql_scripts/extract.sql` will need to be run within the NCDR environment and the outputs saved as `extract.xlsx` within `src/data`. The sql script used to extract the data is provided below:
 
@@ -46,8 +50,10 @@ For these examples the script in `src/data/sql_scripts/extract.sql` will need to
 
 <br/>
 
-# Specialty HVLC
+# Inpatient Specialty HVLC
 ***
+
+These section look at identifying inpatient HVLC activities
 
 ## ENT {.tabset .tabset-fade}
 For ENT there are five different HVLC groups that are currently defined by GIRFT. Examples of how to use the functions that have been created in this repository within the `src/data/r_scripts/ENT.R` script are given below. The final tab shows the code that has been written to create the functions to either filter or flag episodes of interest.
@@ -375,3 +381,192 @@ The code below has been written to create the functions that will either filter 
 ```
 
 <br/>
+
+## Urology {.tabset .tabset-fade}
+For Urology there are five different HVLC groups that are currently defined by GIRFT. Examples of how to use the functions that have been created in this repository within the `src/data/r_scripts/Urology.R` script are given below. The final tab shows the code that has been written to create the functions to either filter or flag episodes of interest.
+
+### Bladder outflow obstruction
+The code below will filter the extracted APCE data to keep only the Bladder Outflow Obstruction activity.
+
+```{r Urology Bladder Outflow Obstruction Filter}
+
+urology_boo_filter <- hvlc_urology_boo_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+urology_boo_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Urology Bladder Outflow Obstruction Flag}
+
+urology_boo_flag <- hvlc_urology_boo_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Bladder_outflow_obstruction_flag")) %>%
+  head(n = 15)
+
+urology_boo_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+<br/>
+
+### Bladder tumour resection (TURBT)
+The code below will filter the extracted APCE data to keep only the Bladder Tumour Resection (TURBT) activity.
+
+```{r Urology Bladder tumour resection Filter}
+
+urology_btr_filter <- hvlc_urology_btr_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+urology_btr_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Urology Bladder tumour resection Flag}
+
+urology_btr_flag <- hvlc_urology_btr_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Bladder_tumour_resection_flag")) %>%
+  head(n = 15)
+
+urology_btr_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Cystoscopy plus
+The code below will filter the extracted APCE data to keep only the Cystoscopy plus activity.
+
+```{r Urology Cystoscopy plus Filter}
+
+urology_cyst_filter <- hvlc_urology_cyst_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+urology_cyst_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Urology Cystoscopy plus Flag}
+
+urology_cyst_flag <- hvlc_urology_cyst_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Cystoscopy_plus_flag")) %>%
+  head(n = 15)
+
+urology_cyst_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Ureteroscopy and stent management
+The code below will filter the extracted APCE data to keep only the Ureteroscopy And Stent Management activity.
+
+```{r Urology Ureteroscopy and stent management Filter}
+
+urology_usm_filter <- hvlc_urology_usm_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+urology_usm_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Urology Ureteroscopy and stent management Flag}
+
+urology_usm_flag <- hvlc_urology_usm_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Ureteroscopy_and_stent_management_flag")) %>%
+  head(n = 15)
+
+urology_usm_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### Minor peno-scrotal surgery
+The code below will filter the extracted APCE data to keep only the Minor Peno-Scrotal Surgery activity.
+
+```{r Urology Minor peno-scrotal surgery Filter}
+
+urology_mpss_filter <- hvlc_urology_mpss_filter(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All"))
+
+urology_mpss_filter %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+Alternatively, an additional field can be created to flag which records are identified:
+```{r Urology Minor peno-scrotal surgery Flag}
+
+urology_mpss_flag <- hvlc_urology_mpss_flag(extract) %>%
+  select(c("APCE_Ident", "Main_Specialty_Code", "Treatment_Function_Code", "Der_Diagnosis_All", "Der_Procedure_All", "Minor_peno_scrotal_surgery_flag")) %>%
+  head(n = 15)
+
+urology_mpss_flag %>%
+  kable(format = "html") %>%
+  kable_styling() %>%
+  scroll_box(width = "800px", height = "200px")
+
+```
+
+<br/>
+
+### R Functions
+The code below has been written to create the functions that will either filter or flag activity based on the Urology HVLC criteria:
+```{r, file='Urology.R', echo = TRUE, eval = FALSE}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
