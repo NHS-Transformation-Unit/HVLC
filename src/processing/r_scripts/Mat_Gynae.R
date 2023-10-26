@@ -175,7 +175,7 @@ hvlc_gynae_vag_hyst_filter <- function(input_df){
 hvlc_gynae_vag_hyst_flag <- function(input_df){
   
   input_df %>%
-    mutate("Vaginal_hysterectomy_and/or_vaginal_wall_repair_flag" = case_when(
+    mutate("Vaginal_hysterectomy_and_or_vaginal_wall_repair_flag" = case_when(
       Age >= 17 &
       (Main_Specialty_Code %in% c(500,502) | Treatment_Function_Code %in% c(502,503)) &
       grepl("Q08|P22|P23|P24", Der_Procedure_All) &
@@ -183,5 +183,5 @@ hvlc_gynae_vag_hyst_flag <- function(input_df){
       TRUE ~ 0
     )
     )%>%
-    arrange(desc(Vaginal_hysterectomy_and/or_vaginal_wall_repair_flag))
+    arrange(desc(Vaginal_hysterectomy_and_or_vaginal_wall_repair_flag))
   }
