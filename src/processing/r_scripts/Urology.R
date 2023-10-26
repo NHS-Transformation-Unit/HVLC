@@ -40,19 +40,17 @@ hvlc_urology_boo_flag <- function(input_df){
                                             "M683",
                                             "M688",
                                             "M689") ~ 1,
-      TRUE~0
+      TRUE ~ 0
     )
     ) %>%
     arrange(desc(Bladder_outflow_obstruction_flag))
 }
 
-         
 # Bladder tumour resection (TURBT) ------------------------------------------------------
          
 hvlc_urology_btr_filter <- function(input_df){
   
   input_df %>%
-    
   filter(Age >= 17, 
          (Main_Specialty_Code == 101 | Treatment_Function_Code %in% c(101,211)),
          (Admission_Method %in% c(11,12,13) | Patient_Classification == 2),
@@ -68,14 +66,15 @@ hvlc_urology_btr_flag <- function(input_df){
       (Main_Specialty_Code == 101 | Treatment_Function_Code %in% c(101,211)) &
       (Admission_Method %in% c(11,12,13) | Patient_Classification == 2) &
       substr(Der_Procedure_All, 1,4) %in% c("M421") ~ 1,
-      TRUE~0
+      TRUE ~ 0
       )
     ) %>%
     arrange(desc(Bladder_tumour_resection_flag))
 }
 
-         
-# Cystoscopy plus (WE NEED EXTRACTS OF OUTPATIENT DATA AS WELL FOR THIS PATHWAY)
+
+# Cystoscopy plus ---------------------------------------------------------
+# WE NEED EXTRACTS OF OUTPATIENT DATA AS WELL FOR THIS PATHWAY
 
 hvlc_urology_cyst_filter <- function(input_df){
   
@@ -125,13 +124,13 @@ hvlc_urology_cyst_flag <- function(input_df){
     arrange(desc(Cystoscopy_plus_flag))
 }
 
-         
-# Ureteroscopy and stent management (WE NEED EXTRACTS OF OUTPATIENT DATA AS WELL FOR THIS PATHWAY)      
+
+# Ureteroscopy and stent management ---------------------------------------
+# WE NEED EXTRACTS OF OUTPATIENT DATA AS WELL FOR THIS PATHWAY
          
 hvlc_urology_usm_filter <- function(input_df){
   
   input_df %>%
-    
   filter(Age >= 17, 
          (Main_Specialty_Code == 101 | Treatment_Function_Code %in% c(101,211)),         
          (Admission_Method %in% c(11,12,13) | Patient_Classification == 2),
@@ -190,16 +189,16 @@ hvlc_urology_usm_flag<- function(input_df){
                                             "M275",
                                             "M292",
                                             "M293",
-                                            "M295")~1,
-      TRUE~0
+                                            "M295") ~ 1,
+      TRUE ~ 0
     )
     )  %>%
     arrange(desc(Ureteroscopy_and_stent_management_flag))
-  
 }
 
-#  Minor peno-scrotal surgery
-        
+
+# Minor peno-scrotal surgery ----------------------------------------------
+
 hvlc_urology_mpss_filter <- function(input_df){
   
   input_df %>%
@@ -273,16 +272,9 @@ hvlc_urology_mpss_flag <- function(input_df){
                                             "T193",
                                             "N191",
                                             "N198",
-                                            "N199") ~1,
+                                            "N199") ~ 1,
       TRUE ~ 0
     )
     )%>%
     arrange(desc(Minor_peno_scrotal_surgery_flag))
-  
 }
-
-      
-      
-      
- 
-        
