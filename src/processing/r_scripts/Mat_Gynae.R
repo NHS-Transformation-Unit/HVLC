@@ -3,7 +3,6 @@
 hvlc_gynae_op_filter<- function(input_df){
   
   input_df %>%
-
   filter(Age >= 17, 
           (Main_Specialty_Code %in% c(500,502) | Treatment_Function_Code %in% c(502,503)),
           (Admission_Method %in% c(11,12,13) | Patient_Classification == 2),
@@ -58,7 +57,6 @@ hvlc_gynae_op_flag <- function(input_df){
 hvlc_gynae_lh_filter <- function(input_df){
   
   input_df %>%
-
   filter(Age >= 17, 
          (Main_Specialty_Code %in% c(500,502) | Treatment_Function_Code %in% c(502,503)),
          (Admission_Method %in% c(11,12,13) | Patient_Classification == 2),
@@ -89,7 +87,6 @@ hvlc_gynae_lh_flag <- function(input_df){
 hvlc_gynae_eb_filter <- function(input_df){
   
   input_df %>%
-
   filter(Age >= 17, 
          (Main_Specialty_Code %in% c(500,502) | Treatment_Function_Code %in% c(502,503)),
          (Admission_Method %in% c(11,12,13) | Patient_Classification == 2),
@@ -118,7 +115,6 @@ hvlc_gynae_eb_flag <- function(input_df){
 hvlc_gynae_hyst_filter <- function(input_df){
   
   input_df %>%
-
   filter(Age >= 17, 
          (Main_Specialty_Code %in% c(500,502) | Treatment_Function_Code %in% c(502,503)),
          (substr(Der_Procedure_All, 1,4) %in% c("Q161",
@@ -169,7 +165,6 @@ hvlc_gynae_hyst_flag <- function(input_df){
 hvlc_gynae_vag_hyst_filter <- function(input_df){
   
   input_df %>%
-
   filter(Age >= 17, 
          (Main_Specialty_Code %in% c(500,502) | Treatment_Function_Code %in% c(502,503)),
          grepl("Q08|P22|P23|P24", Der_Procedure_All),
