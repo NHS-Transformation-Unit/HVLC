@@ -51,3 +51,4 @@ All code is stored in src. This is subdivided into three modules:
 This repository has been created and developed by:
 
 -   [Andy Wilson](https://github.com/ASW-Analyst)
+-   [Sharon Lai](https://github.com/SLai-mc)
