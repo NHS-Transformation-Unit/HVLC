@@ -15,7 +15,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
 source("../../requirements/packages.R")
-source("load.R")
+source("../../load/load.R")
 source("ENT.R")
 source("General_Surgery.R")
 source("Ophthalmology.R")
