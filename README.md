@@ -2,7 +2,7 @@
 
 # HVLC Activity Identification
 
-This repository contains the scripts for identifying relevant HVLC activity within the Admitted Patient Care dataset using the criteria specified by GIRFT.
+This repository contains the scripts for identifying relevant HVLC activity within the [Admitted Patient Care](https://data.england.nhs.uk/ncdr/database/NHSE_SUSPlus_Live/) (APCE) dataset using the criteria specified by [GIRFT](https://gettingitrightfirsttime.co.uk/).
 
 <br/>
 
@@ -22,6 +22,8 @@ At present the structure of the repository is:
 ├───images
 └───src
     ├───config
+    ├───load
+    ├───outputs
     ├───processing
       ├───r_scripts
       └───sql_scripts
@@ -43,8 +45,10 @@ Images such as TU logos and branding to add to outputs.
 All code is stored in src. This is subdivided into three modules:
 
 1. `config`: Files for configuring the output such as the `theme.css` for the html output.
-2. `processing`: Files for extracting data from NCDR and creating the functions to filter or flag HVLC activity.
-3. `requirements`: Requirements file for building the output html such as the `packages.R` script.
+2. `load`: Contains script for loading APCE extract
+3. `outputs`: Contains `.rmd` script for creating output
+4. `processing`: Files for extracting data from NCDR and creating the functions to filter or flag HVLC activity.
+5. `requirements`: Requirements file for building the output html such as the `packages.R` script.
 
 ## Contributors
 
@@ -52,3 +56,4 @@ This repository has been created and developed by:
 
 -   [Andy Wilson](https://github.com/ASW-Analyst)
 -   [Sharon Lai](https://github.com/SLai-mc)
+-   [Simon Wickham](https://github.com/SiWickham)

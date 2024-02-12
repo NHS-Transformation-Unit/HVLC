@@ -8,19 +8,19 @@ output:
     toc_depth: 2
     toc_float: true
     toc_collapsed: true
-    css: ../../config/nhs_tu_theme.css
+    css: ../config/nhs_tu_theme.css
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 
-source("../../requirements/packages.R")
-source("load.R")
-source("ENT.R")
-source("General_Surgery.R")
-source("Ophthalmology.R")
-source("Urology.R")
-source("Mat_Gynae.R")
+source("../requirements/packages.R")
+source("../load/load.R")
+source("../processing/r_scripts/ENT.R")
+source("../processing/r_scripts/General_Surgery.R")
+source("../processing/r_scripts/Ophthalmology.R")
+source("../processing/r_scripts/Urology.R")
+source("../processing/r_scripts/Mat_Gynae.R")
 
 ```
 
@@ -46,7 +46,7 @@ This document has been created to demonstrate how to extract and identify *HVLC*
 
 For these examples the script in `src/data/sql_scripts/extract.sql` will need to be run within the NCDR environment and the outputs saved as `extract.xlsx` within `src/data`. The sql script used to extract the data is provided below:
 
-```{sql, file='../sql_scripts/extract.sql', echo = TRUE, eval = FALSE}
+```{sql, file='../processing/sql_scripts/extract.sql', echo = TRUE, eval = FALSE}
 ```
 
 <br/>
@@ -226,7 +226,7 @@ ent_sh_flag %>%
 
 ### R Functions
 The code below has been written to create the functions that will either filter or flag activity based on the ENT HVLC criteria:
-```{r, file='ENT.R', echo = TRUE, eval = FALSE}
+```{r, file='../processing/r_scripts/ENT.R', echo = TRUE, eval = FALSE}
 ```
 
 <br/>
@@ -335,7 +335,7 @@ gs_puh_flag %>%
 
 ### R Functions
 The code below has been written to create the functions that will either filter or flag activity based on the General Surgery HVLC criteria:
-```{r, file='General_Surgery.R', echo = TRUE, eval = FALSE}
+```{r, file='../processing/r_scripts/General_Surgery.R', echo = TRUE, eval = FALSE}
 ```
 
 <br/>
@@ -378,7 +378,7 @@ ophth_lccs_flag %>%
 
 ### R Functions
 The code below has been written to create the functions that will either filter or flag activity based on the Ophthalmology HVLC criteria:
-```{r, file='Ophthalmology.R', echo = TRUE, eval = FALSE}
+```{r, file='../processing/r_scripts/Ophthalmology.R', echo = TRUE, eval = FALSE}
 ```
 
 <br/>
@@ -551,7 +551,7 @@ urology_mpss_flag %>%
 
 ### R Functions
 The code below has been written to create the functions that will either filter or flag activity based on the Urology HVLC criteria:
-```{r, file='Urology.R', echo = TRUE, eval = FALSE}
+```{r, file='../processing/r_scripts/Urology.R', echo = TRUE, eval = FALSE}
 ```
 
 <br/>
@@ -725,26 +725,7 @@ gynae_vag_hyst_flag %>%
 
 ### R Functions
 The code below has been written to create the functions that will either filter or flag activity based on the Gynaecology HVLC criteria:
-```{r, file='Mat_Gynae.R', echo = TRUE, eval = FALSE}
+```{r, file='../processing/r_scripts/Mat_Gynae.R', echo = TRUE, eval = FALSE}
 ```
 
 <br/>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
